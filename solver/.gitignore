@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 # IntelliJ project files
-solver.credentials.py
+credentials.py
 .idea
 *.iml
 out
