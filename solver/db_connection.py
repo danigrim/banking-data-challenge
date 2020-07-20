@@ -23,6 +23,7 @@ def db_connect():
         cursor = connection.cursor()
         print("Successfully connected to database")
         return connection, cursor
+
     except (Exception, Error) as error:
         print ("Error connecting to database", error)
 
@@ -35,7 +36,8 @@ Closes connection to database
 
 
 def db_close(connection, cursor):
-    if(connection):
+
+    if connection:
         cursor.close()
         connection.close()
         print("Connection closed successfully")
