@@ -70,7 +70,7 @@ Part 2 : Data Analytics
 
 In order to answer this question, I split my analysis into two subsections: **1.investigating if characteristics of certain card holders (customers) make them prone to fraudulent transactions**, and **2.investigating if characteristics of the transactions themselves might indicate fraud**. I will present here all relevant findings, indicating factors in the database which might be associated with fraud. <br />
 
-**Vintage Groups and Fraud**
+## Vintage Groups and Fraud ##
 Assuming that vintage group refers to the 'age (vintage)' of a card holders customer status, a correlation between fraud and a particular vintage group of customer could be insightful. 
 
 I plotted two pie charts, with the distribution of the vintage groups of card holders who did suffer fraud and those which didn't. 
@@ -83,7 +83,7 @@ As can be seen in the pie charts, vintage group 1 is the most common accross all
 
 Regarding customer data, no relevant trend was identified relating the age or card family of card holder to their vulnerability to fraud. Vintage group could be somehow associated to fraud, Vintage Group 1 seems more vulnerable and Vintage Group 3 less vulnerable. Nontheless, more data would be needed for a conclusion. 
 
-**Fraudulent Transaction Values**
+## Fraudulent Transaction Values ##
 In this step, I analyzed the differences between the mean, maximum, minimum and distribution of values in fraudulent and non fraudulent transactions. 
 
 The minimum value amongst non fraudulent transactions in the database is R$103, whereas the minimum value amongst fraudulent transactions is R$603. This is a significant difference, and suggests a correlation between transaction value and fraud. It could also be the case that fraudulent transactions below this value do not get reported/identified as easily. The average value of fraudulent transactions in the database is also higher than that for non fraudulent transactions. Non fraudulent transaction have an average value of R$24736.148519, whereas fraudulent transactions have an average value of R$26808.880734, which means that the average value for fraudulent transactions is 8.4% higher. 
@@ -98,7 +98,7 @@ In specific, it is aparent that a large percentage(32%) of fraudulent transactio
 
 With this information, we can assume the values of transactions are associated to them being fraudulent or not. Specifically, because frauds tend to occur for values above the benchmark of R$630, are in average higher, and most likely for transactions between R$30000-40000.
 
-**Value and transaction segment**
+## Fraudulent Transaction Segments and Values ##
 In this step, rather than investigating how a single variable in the database might relate to fraudulent transactions, I investigated the two factors of transaction segment and value. 
 
 I started by investigating which transaction segments have the most fraudulent transactions. I found that to be Segment 11 (SEG11), 13% of frauds happen within this segment. **File Location**: solver/fraud_analytics.py | **Function name**: describe_value_segment_transaction
@@ -106,7 +106,7 @@ I started by investigating which transaction segments have the most fraudulent t
 
 
 
-**Fraudulent Transaction Month**
+## Fraudulent Transaction Month ##
 In this step, I analyzed the distribution of fraudulent transactions per month (as the database only contains values for the year of 2016). 
 
 **File Location**: solver/fraud_graphing.py | **Function name**: fraud_month_distribution
