@@ -52,12 +52,12 @@ The fraudulent transaction with the highest value (of R$49155.00) has id is ```C
 
 In order to have a better understanding of the distribution of the highest values, I plotted a histogram showing the distribution of values above R$40000.00. As can be seen in the image below, the last bucket contains 8 transactions (out of 107 total fraudulent transactions), it contains all transactions above the 93rd Percentile of the overall distribution.
 
-<img src="./top-frauds-distribution.png" width="500">
+<img src="./top-frauds-distribution.png" width="300">
 
 
 Table with the id's of the 8 transactions with highest value
 
-<img src="./top-8-frauds.png" width="500">
+<img src="./top-8-frauds.png" width="300">
 
 **File Location**: solver/data_extraction.py | **Function name**:  highest_value_frauds
 
