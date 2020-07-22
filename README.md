@@ -15,9 +15,9 @@ This repository contains my answers to the Stone data challenge
    Summary of answers and snapshots of data frames will be printed to console in order   
    
 ## Project Structure
-  Solver - Package folder
-    |_ consts.py *Names of tables
-    |_ data_extraction.py *Functions finding extracting data for part 1
-    |_ db_connection.py *Functions establishing and closing connection to PostgreSQL database
-    |_ utils.py *Functions implementing functionalities such as merging and sorting tables, getting column names for tables and more
-    |_ fraud_analytics.py *Functions performing analysis for part 2 
+  Solver - Package folder <br /> 
+    |_ consts.py *Names of tables<br />
+    |_ data_extraction.py *Functions finding extracting data for part 1<br />
+    |_ db_connection.py *Functions establishing and closing connection to PostgreSQL database<br />
+    |_ utils.py *Functions implementing functionalities such as merging and sorting tables, getting column names for tables and more<br />
+    |_ fraud_analytics.py *Functions performing analysis for part 2<br />
