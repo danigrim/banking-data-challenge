@@ -35,20 +35,29 @@ Part 1 : Data Extraction & Analytics
 
 ### How is the card_family ranked based on the credit_limit given to each card? <br />
 
-**Answer** : <br /> The three tiers of card family are Gold, Platinum and Premium in increasing order of credit limit. The cards with the lowest limits, between **R$ 2000-50000**, are ranked as **Gold**. The cards with the highest credit limits, between **R$200000-899000**,  are ranked as **Premium**. The cards with a credit limit between **R$51000-108000** are ranked as **Platinum**, although these constitute **only 31% of the Platinum cards.** The cards with a credit limit between **R$108000-200000** can either be ranked as **Premium or Platinum**. It is relevant to note that **78%** of the cards within this interval are ranked as **Platinum**, and 69% of the Platinum cards are in this interval. Moreover, within this credit limit, there is no indication that the choice of ranking between Platinum and Premium depends on their proximity to the higher or lower ends of the interval.**Based on that, it is safe to assume that there exists other variables that influence the ranking of a card as Premium within this interval**. I investigated the possibility of the ranking in this category being related to the customer segment (Gold or Diamond) or the customer Vintage Group (VG1, VG2, VG3) but neither of those factors seem related to the ranking of the card family. It seems most likely that there are extraneous variables influencing the classification within this interval. This could be the case if, for example, customers with a credit limit above R$108000 were given the option to pay the additional fee to get Premium benefits.
+**Answer** : <br /> The three tiers of card family are Gold, Platinum and Premium in increasing order of credit limit. The cards with the lowest limits, between **R$ 2000-50000**, are ranked as **Gold**. The cards with the highest credit limits, between **R$200000-899000**,  are ranked as **Premium**. The cards with a credit limit between **R$51000-108000** are ranked as **Platinum**, although these constitute **only 31% of the Platinum cards.** The cards with a credit limit between **R$108000-200000** can either be ranked as **Premium or Platinum**. It is relevant to note that **78%** of the cards within this interval are ranked as **Platinum**, and 69% of the Platinum cards are in this interval. Moreover, within this credit limit, there is no indication that the choice of ranking between Platinum and Premium depends on their proximity to the higher or lower ends of the interval.**Based on that, it is safe to assume that there exists other variables that influence the ranking of a card as Premium within this interval**. It seems most likely that there are extraneous variables influencing the classification within this interval. This could be the case if, for example, customers with a credit limit above R$108000 were given the option to pay the additional fee to get Premium benefits.
 
-**Summarizing Table**
-
+**Summarizing Table** <br /> 
+<img src="./card-family-summary.png" width="500">
 
 **File Location**: solver/data_extraction.py | **Function name**: cfamily_creditlimit_correlate
 
 ### For the transactions flagged as fraud, what are the ids of the transactions with the highest value? <br />
 
-**Note** For this question, I considered the “highest value” transactions to be those above the 95th percentile of the distribution of the fraudulent transaction values. The 95th percentile is R$ 48381.8, found using the command ```df_all_frauds.value.quantile([0.95])```
+**Note** <br /> 
+ 
 
 **Answer** <br /> 
-Table showing ids of fraudulent transactions with the top 5% of transaction value. The first row is the id of the transaction of highest value, which has value of R$49155.00 
+The fraudulent transaction with the highest value (of R$49155.00) has id is ```CTID20567160```
 
+In order to have a better understanding of the distribution of the highest values, I plotted a histogram showing the distribution of values above R$40000.00. As can be seen in the image below, the last bucket contains 8 transactions (out of 107 total fraudulent transactions), it contains all transactions above the 93rd Percentile of the overall distribution.
+
+<img src="./top-frauds-distribution.png" width="300">
+
+
+Table with the id's of the 8 transactions with highest value
+
+<img src="./top-8-frauds.png" width="300">
 
 **File Location**: solver/data_extraction.py | **Function name**:  highest_value_frauds
 
