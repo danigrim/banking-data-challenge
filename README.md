@@ -105,7 +105,7 @@ I started by investigating which transaction segments have the most fraudulent t
 
 I then went on to investigate a potential correlation between transaction segments and values for fraudulent and non fraudulent transactions. The graph below shows my findings. 
 
-<img src="./all-segs.png" width="450">
+<img src="./all-segs.png" width="500">
 
 As was expected, the "lower boundary" of transaction value is higher in every segment for the fraudulent transactions when compared to the non fraudulent ones. Moreover, for some of the segments, it is interesting to note that fraud only occured in the database for a small interval of values. Segment 15 specifically stands out, as it seems vulnerable to fraud only in the highest tiers of transaction value, which are less common amongst the non fraudulent transactions. The data for segment 21 is also interesting, as frauds in this segment tend to occur with a narrow interval of transaction values. 
 
