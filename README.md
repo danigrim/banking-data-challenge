@@ -98,6 +98,14 @@ In specific, it is aparent that a large percentage(32%) of fraudulent transactio
 
 With this information, we can assume the values of transactions are associated to them being fraudulent or not. Specifically, because frauds tend to occur for values above the benchmark of R$630, are in average higher, and most likely for transactions between R$30000-40000.
 
+**Value and transaction segment**
+In this step, rather than investigating how a single variable in the database might relate to fraudulent transactions, I investigated the two factors of transaction segment and value. 
+
+I started by investigating which transaction segments have the most fraudulent transactions. I found that to be Segment 11 (SEG11), 13% of frauds happen within this segment. **File Location**: solver/fraud_analytics.py | **Function name**: describe_value_segment_transaction
+
+
+
+
 **Fraudulent Transaction Month**
 In this step, I analyzed the distribution of fraudulent transactions per month (as the database only contains values for the year of 2016). 
 
