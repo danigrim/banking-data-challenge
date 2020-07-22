@@ -66,7 +66,7 @@ Part 2 : Data Analytics
 ----
 ### Analyze whether or not the fraudulent transactions are somehow associated to the other features of the dataset. Explain your results <br />
 
-In order to answer this question, I split my analysis into two subsections: **1.investigating if characteristics of certain card holders (customers) make them prone to fraudulent transactions**, and **2.investigating if characteristics of the transactions themselves might indicate fraud**. <br />
+In order to answer this question, I split my analysis into two subsections: **1.investigating if characteristics of certain card holders (customers) make them prone to fraudulent transactions**, and **2.investigating if characteristics of the transactions themselves might indicate fraud**. I will present here all relevant findings, indicating factors in the database which might be associated with fraud<br />
 
 **Vintage Groups and Fraud**
 Assuming that vintage group refers to the 'age' of a card holders customer status, a correlation between fraud and a particular vintage group of customer could be insightful. 
@@ -77,8 +77,34 @@ I plotted two pie charts, with the distribution of the vintage groups of card ho
 
 As can be seen in the pie charts, vintage group 1 is the most common accross all card holders. Amongst card holders that suffered from fraud, vintage group 1 is even stronger (49.5% of the total). Moreover, whereas vintage group 3 makes up 32.6% of customers that did not suffer transactions, it only makes up 24.8% of customers that did suffer fraud. This diference of 7.8% is relevant enough to indicate that customers of vintage group 3 have a lower likelihood of suffering fraud. 
 
+**File Location**: solver/fraud_graphing.py | **Function name**: vintage_group_fraud, vintage_group_non_fraud
 
-**File Location**: solver/data_extraction.py | **Function name**:  highest_value_frauds
+No relevant correlation was found for the age of customer and fraud rate, or the card family and fraud rate. 
+
+**Fraudulent Transaction Values**
+In this step, I analyzed the differences between the mean, maximum, minimum and distribution of values in fraudulent and non fraudulent transactions. 
+
+The minimum value amongst non fraudulent transactions in the database is R$103, whereas the minimum value amongst fraudulent transactions is R$603.  This is a significant difference. It is safe to assume that there is a low probability of a transaction being fraudulent in the future if its' value is below R$600. The average value of fraudulent transactions in the database is also higher than that for non fraudulent transactions. Non fraudulent transaction have an average value of R$24736.148519 whereas fraudulent transactions have an average value of R$26808.880734. 
+
+**File Location**: solver/fraud_analytics.py | **Function name**: value_transactions_describe
+
+The distribution of values of fraudulent transactions provides further insights, as seen in the image below. 
+
+<img src="./overall-distribution-frauds.png" width="300">
+
+In specific, it is aparent that a large percentage(32%) of fraudulent transactions have values between R$30000-40000. 
+
+With this information, we can assume the values of transactions are associated to them being fraudulent or not. Specifically, because frauds tend to occur for values above the 'threshold' of R$600, and are most likely for transactions between R$30000-40000.
+
+**Fraudulent Transaction Month**
+In this step, I analyzed the distribution of fraudulent transactions per month (as the database only contains values for the year of 2016). 
+
+**File Location**: solver/fraud_graphing.py | **Function name**: fraud_month_distribution
+
+<img src="./month_distribution.png" width="300">
+
+As seen in the histogram, the 9th month (September) has the highest number of frauds. In fact, 13% of frauds within the database happened in September. 
+
 
 ## Clarification points 
 - For the analysis pertaining to characteristics of the customer, the command ```drop_duplicates(["customer_id"], keep="first")``` was 	used to avoid averages and data distributions to be skewed towards the data for customers that perform multiple transactions. <br />
