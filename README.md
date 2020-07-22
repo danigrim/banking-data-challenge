@@ -73,6 +73,8 @@ Assuming that vintage group refers to the 'age' of a card holders customer statu
 
 I plotted two pie charts, with the distribution of the vintage groups of card holders who did suffer fraud and those which didn't. 
 
+<img src="./vg-fraud.png" width="300"> <img src="./vg-non-fraud.png" width="300">
+
 As can be seen in the pie charts, vintage group 1 is the most common accross all card holders. Amongst card holders that suffered from fraud, vintage group 1 is even stronger (49.5% of the total). Moreover, whereas vintage group 3 makes up 32.6% of customers that did not suffer transactions, it only makes up 24.8% of customers that did suffer fraud. This diference of 7.8% is relevant enough to indicate that customers of vintage group 3 have a lower likelihood of suffering fraud. 
 
 
