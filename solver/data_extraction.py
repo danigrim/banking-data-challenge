@@ -46,7 +46,8 @@ def cfamily_creditlimit_correlate(connection, cursor):
 
 
 """ 
-Function prints list of 15 fraudulent transactions with highest value
+Function prints 95th percentile for value of fraudulent transactions
+and data for the 10 highest value fraudulent transactions
 @Returns null
 @Params - connection: database connection object, cursor:database cursor object
  """
