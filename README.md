@@ -23,7 +23,7 @@ This repository contains my answers to the Stone data challenge
     |_ fraud_analytics.py *Functions performing analysis for part 2<br />
 
 ## Clarification points 
-	* For the analysis pertaining to characteristics of the customer, the command drop_duplicates(["customer_id"], keep="first") was 	used to avoid averages and data distributions to be skewed towards the data for customers that perform multiple transactions. <br />
-	* This analysis is restricted to the information available in the database. I recognize that, for example, for card family ranking analysis, it is possible that having more data points would lead to different conclusions about the limits of each ranking.
+- For the analysis pertaining to characteristics of the customer, the command drop_duplicates(["customer_id"], keep="first") was 	used to avoid averages and data distributions to be skewed towards the data for customers that perform multiple transactions. <br />
+- This analysis is restricted to the information available in the database. I recognize that, for example, for card family ranking analysis, it is possible that having more data points would lead to different conclusions about the limits of each ranking.
 
 	
