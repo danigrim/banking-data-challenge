@@ -29,8 +29,8 @@ Part 1 : Data Extraction & Analytics
 
 - What is the average age of the customers in the database
 
-	Answer : The average age of customers in the database is 35 years old <br />
-	*File Location: solver/data_extraction.py | Function name: get_age_average
+Answer : The average age of customers in the database is 35 years old <br />
+	* File Location: solver/data_extraction.py | Function name: get_age_average
 
 
 ## Clarification points 
