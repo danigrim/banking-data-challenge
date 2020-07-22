@@ -86,7 +86,7 @@ No relevant correlation was found for the age of customer and fraud rate, or the
 **Fraudulent Transaction Values**
 In this step, I analyzed the differences between the mean, maximum, minimum and distribution of values in fraudulent and non fraudulent transactions. 
 
-The minimum value amongst non fraudulent transactions in the database is R$103, whereas the minimum value amongst fraudulent transactions is R$603.  This is a significant difference. It is safe to assume that there is a low probability of a transaction being fraudulent in the future if its' value is below R$600. The average value of fraudulent transactions in the database is also higher than that for non fraudulent transactions. Non fraudulent transaction have an average value of R$24736.148519 whereas fraudulent transactions have an average value of R$26808.880734. 
+The minimum value amongst non fraudulent transactions in the database is R$103, whereas the minimum value amongst fraudulent transactions is R$603.  This is a significant difference, and proves that transactions of low values are unlikely to be fraudulent. The average value of fraudulent transactions in the database is also higher than that for non fraudulent transactions. Non fraudulent transaction have an average value of R$24736.148519, whereas fraudulent transactions have an average value of R$26808.880734, which means that the average value for fraudulent transactions is 8.4% higher. These findings indicate a correlation between transaction value and fraud.
 
 **File Location**: solver/fraud_analytics.py | **Function name**: value_transactions_describe
 
@@ -105,7 +105,7 @@ In this step, I analyzed the distribution of fraudulent transactions per month (
 
 <img src="./month_distribution.png" width="300">
 
-As seen in the histogram, the 9th month (September) has the highest number of frauds. In fact, 13% of frauds within the database happened in September. 
+As seen in the histogram, the 9th month (September) has the highest number of frauds. In fact, 13% of frauds within the database happened in September. This indicates that fraudulent transactions might be related to months.
 
 
 ## Clarification points 
