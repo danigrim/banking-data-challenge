@@ -27,21 +27,6 @@ def get_columns(connection, cursor):
         print(table, column_names)
 
 
-""" 
-Opens database, runs function, closes database
- @Params - func: Function to be executed
- @Returns - null
- """
-
-
-def db_call_function(func):
-    #Connects to database obtaining connection and cursor objects
-    connection, cursor = db_connect()
-    #calls function
-    func(connection, cursor)
-    #Closes connection
-    db_close(connection, cursor)
-
 
 """ 
 Merges tables transaction

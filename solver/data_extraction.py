@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from solver.utils import db_call_function,merge_all_tables, get_unique_customers
+from solver.utils import merge_all_tables, get_unique_customers
 import matplotlib.pyplot as plt
 import scipy as sp
 
@@ -62,7 +62,10 @@ def highest_value_frauds(connection, cursor):
     print(df_all_frauds.head(8))
     print("Fraudulent transactions in decreasing order of value \n", df_all_frauds.head())
 
+
+def plot_fraud_values_hist(connection, cursor):
     #plot histogram with distribution of values above 40000
+    df_all_frauds, df_all = merge_all_tables(connection, cursor)
     df_all_frauds_top = df_all_frauds[(df_all_frauds['value'] > 40000)]
     hist = df_all_frauds_top.value.plot.hist(bins=5)
     plt.xlabel("Value of Transaction ($RS)")
