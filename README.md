@@ -49,7 +49,7 @@ Part 1 : Data Extraction & Analytics
 **Answer** <br /> 
 Table showing ids of fraudulent transactions with the top 5% of transaction value. The first row is the id of the transaction of highest value, which has value of R$49155.00 
 
-<img src="./top-fraud-ids.png" width="500">
+<img src="./top-fraud-ids.png" width="50">
 
 
 **File Location**: solver/data_extraction.py | **Function name**:  highest_value_frauds
