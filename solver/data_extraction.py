@@ -1,81 +1,59 @@
 import pandas as pd
-from solver.utils import db_call_function,merge_all_tables
+from solver.utils import db_call_function,merge_all_tables, get_unique_customers
+import matplotlib.pyplot as plt
 
 """ 
-Function prints average customer age
+Function prints average card holder age
 @Returns null
 @Params - connection: database connection object, cursor:database cursor object
  """
 
 
-def get_age_average(connection, cursor):
+def print_age_average(connection, cursor):
     cursor.execute("SELECT AVG(age) FROM customers")
-    print(cursor.fetchall())
+    print("The average age of card holders is ")
+    print(cursor.fetchone())
+
 
 """ 
-Function analyzes ranking based on 
+Function analyzes card family ranking based on credit limit. 
+Prints description of credit limit distribution within three card families: Gold, Platinum, Premium. 
+Prints description of card family distribution within interval that has multiple possibilities for card family
 @Returns null
 @Params - connection: database connection object, cursor:database cursor object
  """
 
 
-def cardfamily_ranking(connection, cursor):
-    cursor.execute("SELECT MIN(credit_limit) FROM cards WHERE card_family='Gold'")
-    print(cursor.fetchall(), "GOLD MIN")
-    cursor.execute("SELECT MAX(credit_limit) FROM cards WHERE card_family='Gold'")
-    print(cursor.fetchall(),"GOLD MAX")
-    cursor.execute("SELECT AVG(credit_limit) FROM cards WHERE card_family='Gold'")
-    print(cursor.fetchall(), "GOLD AVG")
-    cursor.execute("SELECT MIN(credit_limit) FROM cards WHERE card_family='Platinum'")
-    print(cursor.fetchall(), "PLAT MIN")
-    cursor.execute("SELECT MAX(credit_limit) FROM cards WHERE card_family='Platinum'")
-    print(cursor.fetchall(), "PLAT MAX")
-    cursor.execute("SELECT AVG(credit_limit) FROM cards WHERE card_family='Platinum'")
-    print(cursor.fetchall(), "PLAT AVG")
-    cursor.execute("SELECT MIN(credit_limit) FROM cards WHERE card_family='Premium'")
-    print(cursor.fetchall(), "PRE MIN")
-    cursor.execute("SELECT MAX(credit_limit) FROM cards WHERE card_family='Premium'")
-    print(cursor.fetchall(), "PRE MAX")
-    cursor.execute("SELECT AVG(credit_limit) FROM cards WHERE card_family='Premium'")
-    print(cursor.fetchall(), "PRE AVG")
-
-
-def cardfamily_ranking(connection, cursor):
+def cfamily_creditlimit_correlate(connection, cursor):
     df_all_frauds, df_all = merge_all_tables(connection, cursor)
-    df_all_plat = df_all[(df_all['card_family'] == 'Premium') & (df_all['credit_limit'] < 200000) & (df_all['segment']!= 'Gold')]
-    print(df_all_plat.head(15))
+    df_all_unique = get_unique_customers(df_all)
+
+    #obtaining entries specific to card families
+    df_premium = df_all_unique[df_all_unique['card_family'] == 'Premium']
+    df_platinum = df_all_unique[df_all_unique['card_family'] == 'Platinum']
+    df_gold = df_all_unique[df_all_unique['card_family'] == 'Gold']
+
+    #printing count, mean, std, min, max and percentile divisions for the credit limit within each card family
+    print("Gold Card Family Credit Limits \n", df_gold.credit_limit.describe())
+    print("Platinum Card Family Credit Limits \n", df_platinum.credit_limit.describe())
+    print("Premium Card Family Credit Limits \n", df_premium.credit_limit.describe())
+
+
+    # Description of ambiguous interval
+    df_intersection = df_all_unique[(df_all_unique['credit_limit'] > 108000) & (df_all_unique['credit_limit'] < 200000)]
+    print(df_intersection.card_family.describe(include="all"), "Card Family Rankings in interval of credit limit between R$108000 and R$200000")
+
+
+
+""" 
+Function prints list of 15 fraudulent transactions with highest value
+@Returns null
+@Params - connection: database connection object, cursor:database cursor object
+ """
 
 
 def highest_value_frauds(connection, cursor):
     df_all_frauds, df_all = merge_all_tables(connection, cursor)
     df_all_frauds.sort_values(by="value", ascending=False, inplace=True)
-    print(df_all_frauds.head())
-    return df_all_frauds
-
-
-def fraud_correlate(connection, cursor):
-    df_all_frauds, df_all = merge_all_tables(connection, cursor)
-    frauds_vg1 = df_all[(df_all['card_family'] == 'Premium') & (df_all['credit_limit'] < 200000) & (df_all['segment_x']!= 'Gold')]
-    cursor.execute("SELECT segment FROM customers WHERE id IN (SELECT customer_id FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id IN (SELECT transaction_id FROM frauds)))")
-    cursor.execute("SELECT vintage_group FROM customers WHERE id IN (SELECT customer_id FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id IN (SELECT transaction_id FROM frauds)))")
-    #print(cursor.fetchall(), "Max age fraud")
-    cursor.execute("SELECT vintage_group FROM customers WHERE id IN (SELECT customer_id FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id NOT IN (SELECT transaction_id FROM frauds)))")
-    #print(cursor.fetchall(), "Max age non fraud")
-    cursor.execute("SELECT AVG(credit_limit) FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id IN (SELECT transaction_id FROM frauds))")
-    #print(cursor.fetchall(), "C limit fraud")
-    cursor.execute("SELECT AVG(credit_limit) FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id NOT IN (SELECT transaction_id FROM frauds))")
-    #print(cursor.fetchall(), "C limit not fraud")
-    cursor.execute("SELECT MAX(credit_limit) FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id IN (SELECT transaction_id FROM frauds))")
-    print(cursor.fetchall(), "C limit fraud max")
-    cursor.execute("SELECT MAX(credit_limit) FROM cards WHERE card_number IN (SELECT card_number FROM transactions WHERE id NOT IN (SELECT transaction_id FROM frauds))")
-    print(cursor.fetchall(), "C limit not fraud MAX")
-
-#def dates_transaction(connection, cursor):
-   # cursor.execute("SELECT transaction_date FROM transactions")
-   # print(cursor.fetchall())
-
-def all_table(connection, cursor):
-    merge_all_tables(connection, cursor)
-    pass
-
-db_call_function(cardfamily_ranking)
+    print(df_all_frauds.value.quantile([0.95]))
+    print("Fraudulent transactions in decreasing order of value \n", df_all_frauds.head())

@@ -42,13 +42,17 @@ def db_call_function(func):
     #Closes connection
     db_close(connection, cursor)
 
+
 """ 
 Merges tables transaction
  @Params - 
  @Returns - merged tables
  """
+
+
 def merge_all_tables(connection, cursor):
-    df_frauds = pd.read_sql_query('select * from frauds', con=connection)
+    df_frauds_all = pd.read_sql_query('select * from frauds', con=connection)
+    df_frauds = df_frauds_all[df_frauds_all['fraud_flag'] == True]
     df_transactions = pd.read_sql_query('select * from transactions', con=connection)
     df_transactions.rename(columns={'segment': 'transaction_segment', 'id': 'transaction_id'}, inplace=True)
     df_fraud_transactions = pd.merge(left=df_transactions, right=df_frauds, left_on="transaction_id", right_on="transaction_id", copy=False)
@@ -59,10 +63,10 @@ def merge_all_tables(connection, cursor):
     df_customer_cards.drop("id", axis=1, inplace=True)
 
     df_all_frauds = pd.merge(left=df_customer_cards, right=df_fraud_transactions, left_on="card_number", right_on="card_number", copy=False)
-
     df_all = pd.merge(left=df_customer_cards, right=df_transactions, left_on="card_number", right_on="card_number", copy=False)
 
-    print(df_all_frauds.head(100), "frauds")
-    print(df_all.head(100), "not frauds")
     return df_all_frauds, df_all
 
+
+def get_unique_customers(df):
+    return df.drop_duplicates(["customer_id"], keep="first")
