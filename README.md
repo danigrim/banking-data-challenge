@@ -11,9 +11,10 @@ This repository contains my answers to the Stone data challenge
 
 ## Instructions to run
    You must install Python3 with psycopg2, pandas and matplotlib prior to attempting to run
-   Run python -m solver.main.py
-   Summary of answers and snapshots of data frames will be printed to console in order   
-   
+   Run python -m solver.main.py 
+   Will be printed in console answers for part 1 (in data frames and text)
+   To plot graphs, must run functions individually.
+
 ## Project Structure
   Solver - Package folder <br /> 
     |_ consts.py *Names of tables<br />
@@ -21,6 +22,7 @@ This repository contains my answers to the Stone data challenge
     |_ db_connection.py *Functions establishing and closing connection to PostgreSQL database<br />
     |_ utils.py *Functions implementing functionalities such as merging and sorting tables, getting column names for tables and more<br />
     |_ fraud_analytics.py *Functions performing analysis for part 2<br />
+    |_ fraud_graphing.py *Functions plotting graphs for part 2<br />
 
 ## Answers
 ----
