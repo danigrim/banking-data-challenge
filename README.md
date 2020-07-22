@@ -1,7 +1,7 @@
 ### Banking Data Challenge
 ----
 This repository contains my answers to the Stone data challenge
-----
+
 ## Technologies used
   Language: Python
   Python Libraries: 
@@ -27,7 +27,7 @@ This repository contains my answers to the Stone data challenge
 Part 1 : Data Extraction & Analytics 
 ----
 
-# What is the average age of the customers in the database <br />
+### What is the average age of the customers in the database <br />
 
 **Answer** :  < br/>The average age of customers in the database is 35 years old <br />
 
@@ -42,7 +42,7 @@ Part 1 : Data Extraction & Analytics
 
 **File Location**: solver/data_extraction.py | **Function name**: cfamily_creditlimit_correlate
 
-## For the transactions flagged as fraud, what are the ids of the transactions with the highest value? <br />
+### For the transactions flagged as fraud, what are the ids of the transactions with the highest value? <br />
 
 **Note** For this question, I considered the “highest value” transactions to be those above the 95th percentile of the distribution of the fraudulent transaction values. The 95th percentile is R$ 48381.8, found using the command ```df_all_frauds.value.quantile([0.95])```
 
