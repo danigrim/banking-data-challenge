@@ -22,6 +22,17 @@ This repository contains my answers to the Stone data challenge
     |_ utils.py *Functions implementing functionalities such as merging and sorting tables, getting column names for tables and more<br />
     |_ fraud_analytics.py *Functions performing analysis for part 2<br />
 
+## Answers
+----
+Part 1 : Data Extraction & Analytics 
+----
+
+- What is the average age of the customers in the database
+
+	Answer : The average age of customers in the database is 35 years old <br />
+	*File Location: solver/data_extraction.py | Function name: get_age_average
+
+
 ## Clarification points 
 - For the analysis pertaining to characteristics of the customer, the command drop_duplicates(["customer_id"], keep="first") was 	used to avoid averages and data distributions to be skewed towards the data for customers that perform multiple transactions. <br />
 - This analysis is restricted to the information available in the database. I recognize that, for example, for card family ranking analysis, it is possible that having more data points would lead to different conclusions about the limits of each ranking.
