@@ -1,6 +1,9 @@
 import pandas as pd
+import numpy as np
 from solver.utils import db_call_function,merge_all_tables, get_unique_customers
 import matplotlib.pyplot as plt
+import scipy as sp
+
 
 """ 
 Function prints average card holder age
@@ -56,5 +59,15 @@ and data for the 10 highest value fraudulent transactions
 def highest_value_frauds(connection, cursor):
     df_all_frauds, df_all = merge_all_tables(connection, cursor)
     df_all_frauds.sort_values(by="value", ascending=False, inplace=True)
-    print(df_all_frauds.value.quantile([0.95]))
+    print(df_all_frauds.head(8))
     print("Fraudulent transactions in decreasing order of value \n", df_all_frauds.head())
+
+    #plot histogram with distribution of values above 40000
+    df_all_frauds_top = df_all_frauds[(df_all_frauds['value'] > 40000)]
+    hist = df_all_frauds_top.value.plot.hist(bins=5)
+    plt.xlabel("Value of Transaction ($RS)")
+    plt.ylabel("Frequency")
+    plt.title("Distribution of values of fraudulent transactions")
+    plt.show()
+
+
