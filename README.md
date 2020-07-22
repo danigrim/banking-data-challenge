@@ -4,16 +4,16 @@ This repository contains my answers to the Stone data challenge
 
 ## Technologies used
   Language: Python <br />
-  Python Libraries: 
- 		psycopg2 - Used to establish a connection with the PostgreSQL database
-    pandas - Used to extract and analyze data from the database
-		matplotlib - Used to plot graphs and diagrams 
+  Python Libraries: <br />
+ 		psycopg2 - Used to establish a connection with the PostgreSQL database <br />
+    pandas - Used to extract and analyze data from the database <br />
+		matplotlib - Used to plot graphs and diagrams <br />
 
 ## Instructions to run
-   You must install Python3 with psycopg2, pandas and matplotlib prior to attempting to run
-   Run python -m solver.main.py 
-   Will be printed in console answers for part 1 (in data frames and text)
-   To plot graphs, must run functions individually.
+   You must install Python3 with psycopg2, pandas and matplotlib prior to attempting to run<br />
+   Run python -m solver.main.py <br />
+   Will be printed in console answers for part 1 (in data frames and text)<br />
+   To plot graphs, must run functions individually.<br />
 
 ## Project Structure
   Solver - Package folder <br /> 
@@ -50,9 +50,9 @@ Part 1 : Data Extraction & Analytics
  
 
 **Answer** <br /> 
-The fraudulent transaction with the highest value (of R$49155.00) has id is ```CTID20567160```
+The fraudulent transaction with the highest value (of R$49155.00) has id ```CTID20567160```
 
-In order to have a better understanding of the distribution of the highest values, I plotted a histogram showing the distribution of values above R$40000.00. As can be seen in the image below, the last bucket contains 8 transactions (out of 107 total fraudulent transactions), it contains all transactions above the 93rd Percentile of the overall distribution. If looking for the highest set of values, I would therefore consider everything in the top 7% of the interval. 
+In order to have a better understanding of the distribution of the highest values, I plotted a histogram showing the distribution of values above R$40000.00. As can be seen in the image below, the last bucket contains 8 transactions (out of 109 total fraudulent transactions), it contains all transactions above the 93rd Percentile of the overall distribution. If looking for the highest set of values, I would therefore consider everything in the top 7% of the interval. 
 
 <img src="./top-frauds-distribution.png" width="300">
 
