@@ -44,13 +44,20 @@ Part 1 : Data Extraction & Analytics
 
 ### For the transactions flagged as fraud, what are the ids of the transactions with the highest value? <br />
 
-**Note** For this question, I considered the “highest value” transactions to be those above the 95th percentile of the distribution of the fraudulent transaction values. The 95th percentile is R$ 48381.8, found using the command ```df_all_frauds.value.quantile([0.95])```
+**Note** <br /> 
+ 
 
 **Answer** <br /> 
-Table showing ids of fraudulent transactions with the top 5% of transaction value. The first row is the id of the transaction of highest value, which has value of R$49155.00 
+The fraudulent transaction with the highest value (of R$49155.00) has id is ```CTID20567160```
 
-<img src="./top-fraud-ids.png" width="100">
+In order to have a better understanding of the distribution of the highest values, I plotted a histogram showing the distribution of values above R$40000.00. As can be seen in the image below, the last bucket contains 8 transactions (out of 107 total fraudulent transactions), it contains all transactions above the 93rd Percentile of the overall distribution.
 
+<img src="./top-frauds-distribution.png" width="500">
+
+
+Table with the id's of the 8 transactions with highest value
+
+<img src="./top-frauds-distribution.png" width="500">
 
 **File Location**: solver/data_extraction.py | **Function name**:  highest_value_frauds
 
