@@ -57,7 +57,7 @@ In order to have a better understanding of the distribution of the highest value
 
 Table with the id's of the 8 transactions with highest value
 
-<img src="./top-frauds-distribution.png" width="500">
+<img src="./top-8-frauds.png" width="500">
 
 **File Location**: solver/data_extraction.py | **Function name**:  highest_value_frauds
 
